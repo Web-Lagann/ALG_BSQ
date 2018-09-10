@@ -1,0 +1,100 @@
+                                                        BSQ
+
+
+                                    Introduction aux notions d’algorithmes en PHP
+
+
+Sujet :
+
+• Il s’agit de trouver le plus grand carré possible sur un plateau en évitant des obstacles.
+• Le plateau vous est transmis dans un fichier passé en argument du programme.
+• Le plateau est composé de lignes de ’.' et de ’o’.
+• La première ligne du fichier est un nombre qui indique le nombre de lignes du plateau.
+• Toutes les lignes ont la même longueur.
+• Le plateau sera toujours un rectangle.
+• Il y a au moins une ligne d’au moins une case.
+• À la fin de chaque ligne il y a un ‘\n‘.
+
+
+
+Exemple ∇
+
+Terminal                - + x
+∼/W-ALG-501> cat example_file
+9
+...........................
+....o......................
+............o..............
+...........................
+....o......................
+...............o...........
+...........................
+......o..............o.....
+..o.......o................
+∼/W-ALG-501>
+
+• Le but du programme est de remplacer les ’. par des ’x’ pour représenter le plus grand carré possible.
+• Dans le cas où il y a plusieurs solutions, on choisira de représenter le carré le plus en haut. En cas d’égalité,
+on prendra la plus à gauche.
+
+
+Exemple ∇
+
+Terminal                        - + x
+∼/W-ALG-501> php bsq.php example_file
+.....xxxxxxx...............
+....oxxxxxxx...............
+.....xxxxxxxo..............
+.....xxxxxxx...............
+....oxxxxxxx...............
+.....xxxxxxx...o...........
+.....xxxxxxx...............
+......o..............o.....
+..o.......o................
+∼/W-ALG-501>
+
+/!\ C’est bien un carré. Même si cela n’y ressemble pas visuellement. /!\
+
+
+
+Générateur de plateaux perl :
+
+• Le script perl suivant permet de créer des plateaux.
+
+
+#!/usr/bin/perl −w
+if ((scalar @ARGV) != 3)
+{
+    print "program x y density \n " ;
+    exit ;
+}
+
+my $x = $ARGV [ 0 ] ;
+my $y = $ARGV [ 1 ] ;
+my $density = $ARGV [ 2 ] ;
+my $i = 0;
+my $j = 0;
+print $y . " \n " ;
+
+while ( $i < $y )
+{
+    $j = 0;
+    while ( $j < $x )
+    {
+        if (int ( rand ( $y ) * 2 ) < $ density)
+        {
+            print "o" ;
+        }
+        else
+        {
+            print " . " ;
+        }
+    $j ++;
+    }
+    print " \n " ;
+    $i ++;
+}
+
+
+
+Restrictions : Aucune.
